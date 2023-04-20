@@ -80,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function handleButtonClick() {
-  // 1. Assign shop name to global variable "shopname"
+
   const shopNameInput = document.querySelector('#shopNameInput');
   shopName = shopNameInput.value;
 
-  // 2. Call an endpoint and send this payload to that endpoint
+
   const payload = {
     shopname: shopName,
     month: 'April 2022'
@@ -99,14 +99,14 @@ async function handleButtonClick() {
       body: JSON.stringify(payload)
     });
 
-    // 3. Wait for a response payload and check status code
+
     if (response.status !== 200) {
       displayErrorMessage('An error occurred. Please try again.');
       return;
     }
 
     const data = await response.json();
-    // Process the response data (e.g., update the UI)
+
 
   } catch (error) {
     displayErrorMessage('An error occurred. Please try again.');

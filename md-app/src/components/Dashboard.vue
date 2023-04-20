@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<template>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop Dashboard</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -16,12 +17,12 @@
 
   <section class="section" id="section-1">
     <div class="top">
-      <div class="top-text">In <span id="latest-month"></span>, you had:</div>
+      <div class="top-text">In {{latestMonth}}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
         <div class="top2"></div>
-        <div class="middle" id="num-of-repairs"></div>
+        <div class="middle" id="num-of-repairs">{{numOfRepairs}}</div>
         <div class="bottom-text">Repairs</div>
       </div>
       <div class="bottom-div" id="bottom-div-2">
@@ -67,7 +68,6 @@
         <div class="right-true-middle" id="cumulative-rebate-earnings"></div>
         <div class="right-true-bottom">in year-end rebates if you keep this up!</div>
     </div>
-  </div>
   </section>
 
   <section class="section is-qualify-false" id="section-3">
@@ -181,6 +181,42 @@
   </div>
   </section>
 
-  <script src="js/scripts.js"></script>
 </body>
 </html>
+</template>
+
+<script>
+export default {
+  name: "Dashboard",
+  data() {
+    return {
+        is_qualify: false,
+        latestMonth: "April 2022",
+        numOfRepairs: "3",
+        numOfReplacements: "14",
+        latestMonthRepairRatio: "18%",
+        ytdRepairRatio: "20%",
+        nextMonthRepairs: 0,
+        nextMonthReplacements: 0,
+        totalClaimsYTD: 109, 
+        yearEndRebateAmt: 0,
+        repairEarningsLatestMonth: "3000",
+        glassLaborEarningsLatestMonth: "3000",
+        rebateEarningsLatestMonth: "0",
+        totalEarningsLatestMonth: "6000",
+        cumulativeRebateEarnings: "100",
+        glassLaborEarnings:[0,1,2,3,4,5,6,7,8,9,10,11,12],
+        potentialTotalEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+        potentialRebateEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+        predictedRepairRatio: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+      };
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped src="../assets/css/styles.css">
+
+
+/* @import '../assets/css/styles.css'; */
+</style>

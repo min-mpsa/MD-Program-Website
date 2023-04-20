@@ -23,8 +23,6 @@ let data = {
 let monthArray = [];
 let shopName;
 
-
-
 document.getElementById("latest-month").textContent = data.latestMonth;
 document.getElementById("num-of-repairs").textContent = data.numOfRepairs;
 document.getElementById("num-of-replacements").textContent = data.numOfReplacements;

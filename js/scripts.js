@@ -12,9 +12,11 @@ let data = {
     glassLaborEarningsLatestMonth: "3000",
     rebateEarningsLatestMonth: "0",
     totalEarningsLatestMonth: "6000",
+    cumulativeRebateEarnings: "100",
     glassLaborEarnings: Array(12).fill(0),
     potentialTotalEarnings: Array(12).fill(0),
-    potentialRebateEarnings: Array(12).fill(0)
+    potentialRebateEarnings: Array(12).fill(0),
+    predictedRepairRatio: Array(12).fill(0)
   };
 
 document.getElementById("latest-month").textContent = data.latestMonth;
@@ -27,4 +29,20 @@ document.getElementById("rebate-earnings-latest-month").textContent = "$" + data
 document.getElementById("total-earnings-latest-month").textContent = "$" + data.totalEarningsLatestMonth;
 document.getElementById("latest-month2").textContent = data.latestMonth;
 document.getElementById("ytd-repair-ratio").textContent = data.ytdRepairRatio;
+document.getElementById("cumulative-rebate-earnings").textContent = "$" + data.cumulativeRebateEarnings;
 
+
+function displayContentBasedOnIsQualify() {
+  const isQualifyTrueElements = document.querySelectorAll('.is-qualify-true');
+  const isQualifyFalseElements = document.querySelectorAll('.is-qualify-false');
+
+  if (data.is_qualify) {
+    isQualifyTrueElements.forEach(element => element.style.display = 'block');
+    isQualifyFalseElements.forEach(element => element.style.display = 'none');
+  } else {
+    isQualifyTrueElements.forEach(element => element.style.display = 'none');
+    isQualifyFalseElements.forEach(element => element.style.display = 'block');
+  }
+}
+
+displayContentBasedOnIsQualify();

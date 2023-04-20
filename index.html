@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav class="hidden-nav">
+    <div class="nav-buttons">
+      <button class="nav-button" id="view-past-data">View Past Data</button>
+      <button class="nav-button" id="logout">Logout</button>
+    </div>
+  </nav>
+
+  <section class="section" id="section-1">
+    <div class="top">
+      <div class="top-text">In <span id="latest-month"></span>, you had:</div>
+    </div>
+    <div class="bottom">
+      <div class="bottom-div" id="bottom-div-1">
+        <div class="top2"></div>
+        <div class="middle" id="num-of-repairs"></div>
+        <div class="bottom-text">Repairs</div>
+      </div>
+      <div class="bottom-div" id="bottom-div-2">
+        <div class="top2"></div>
+        <div class="middle" id="num-of-replacements"></div>
+        <div class="bottom-text">Replacements</div>
+      </div>
+      <div class="bottom-div" id="bottom-div-3">
+        <div class="top2"></div>
+        <div class="middle" id="latest-month-repair-ratio"></div>
+        <div class="bottom-text">of windshields repaired</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="section-2">
+    <div class="left">
+        <div class="left-div-top">In all of 2022, you've had:</div>
+        <div class="left-div-middle">
+            <div class="left-div-middle-left" id="ytd-repair-ratio"></div>
+            <div class="left-div-middle-right">of windshields repaired</div>
+        </div>
+        <div class="left-div-bottom">Hit 35% repairs to get rebates!</div>
+    </div>
+    <div class="right">
+        <div class="right-div-top"></div>
+        <div class="right-div-bottom">
+            <div class="right-div-bottom-top">Find out how far you can drive forward next month:</div>
+            <div class="right-div-bottom-bottom">
+                <div class="inputcontainer">
+                    <input type="text">
+                    Repairs
+                </div>
+                <div class="inputcontainer">
+                    <input type="text">
+                    Replacements
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="section" id="section-3">
+    <div class="top">
+        <div class="top-text">What you're missing out on:</div>
+    </div>
+    <div class="bottom">
+      <div class="bottom-div" id="bottom-div-4"></div>
+      <div class="bottom-div" id="bottom-div-5"></div>
+      <div class="bottom-div" id="bottom-div-6"></div>
+      <div class="bottom-div" id="bottom-div-7"></div>
+    </div>
+  </section>
+
+  <section class="section" id="section-4">
+    <div class="top">
+        <div class="top-text">In <span id="latest-month2"></span>, you earned:</div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-div" id="bottom-div-1">
+          <div class="top2"></div>
+          <div class="middle" id="repair-earnings-latest-month"></div>
+          <div class="bottom-text">from repairs</div>
+        </div>
+        <div class="bottom-div" id="bottom-div-2">
+          <div class="top2"></div>
+          <div class="middle" id="glass-labor-earnings-latest-month"></div>
+          <div class="bottom-text">from glass labor</div>
+        </div>
+        <div class="bottom-div" id="bottom-div-3">
+          <div class="top2"></div>
+          <div class="middle" id="rebate-earnings-latest-month"></div>
+          <div class="bottom-text">from rebates</div>
+        </div>
+        <div class="bottom-div" id="bottom-div-4">
+            <div class="top2"></div>
+            <div class="middle" id="total-earnings-latest-month"></div>
+            <div class="bottom-text">in total</div>
+          </div>
+      </div>
+  </section>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>

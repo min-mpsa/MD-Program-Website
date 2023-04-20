@@ -7,6 +7,7 @@ let data = {
     ytdRepairRatio: "20%",
     nextMonthRepairs: 0,
     nextMonthReplacements: 0,
+    totalClaimsYTD: 109, 
     yearEndRebateAmt: 0,
     repairEarningsLatestMonth: "3000",
     glassLaborEarningsLatestMonth: "3000",
@@ -74,9 +75,12 @@ function populateDropdown(options) {
 
 populateDropdown(monthArray)
 
+
+/* Remove comment when backend is done
+
 document.addEventListener('DOMContentLoaded', () => {
-  const buttonX = document.querySelector('#buttonX');
-  buttonX.addEventListener('click', handleButtonClick);
+  const button = document.querySelector('#submitbutton');
+  button.addEventListener('click', handleButtonClick);
 });
 
 async function handleButtonClick() {
@@ -87,34 +91,21 @@ async function handleButtonClick() {
 
   const payload = {
     shopname: shopName,
-    month: 'April 2022'
+    month: "latest"
   };
 
-  try {
-    const response = await fetch('https://your-api-url/endpoint', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
 
+  const response = await fetch('https://your-api-url/endpoint', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
 
-    if (response.status !== 200) {
-      displayErrorMessage('An error occurred. Please try again.');
-      return;
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-
-  } catch (error) {
-    displayErrorMessage('An error occurred. Please try again.');
-  }
+  window.location.href = 'index.html';
 }
 
-function displayErrorMessage(message) {
-  const errorElement = document.querySelector('#errorElement');
-  errorElement.textContent = message;
-  errorElement.style.display = 'block';
-}
+*/

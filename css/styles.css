@@ -67,6 +67,62 @@ body {
     flex-direction: column;
   }
 
+  #section-5 {
+    height: 10vh;
+    width: 76vw;
+    border: 1px solid white;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-bottom: 0vh;
+  }
+
+  .section-5-left {
+    font-size: 2em;
+    width: 38vw;
+    height: 10vh;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section-5-right {
+    width: 38vw;
+    height: 10vh;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .month-dropdown {
+    appearance: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.month-dropdown::-ms-expand {
+    display: none;
+}
+
+.month-dropdown:focus {
+    box-shadow: 0  0 2px rgba(0, 123, 255, 0.25);
+}
+
+.month-dropdown option {
+    background-color: white;
+    color: #007bff;
+    padding: 0.5em 1em;
+    font-size: 1em;
+}  
+
+
 #section-2 .left {
     width: 50vw;
     height: 100%;

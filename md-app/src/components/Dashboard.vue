@@ -17,7 +17,7 @@
 
   <section class="section" id="section-1">
     <div class="top">
-      <div class="top-text">In {{test}}, you had:</div>
+      <div class="top-text">In {{data.ytdRepairRatio}}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
@@ -150,7 +150,7 @@ export default {
   data() {
     return {
         LineChart,
-        test: ""
+        data: {}
       };
   },
   methods: {
@@ -199,23 +199,20 @@ export default {
     }
  },
  mounted() {
-  axios.get('http://localhost:3000/')
+  axios.get('http://localhost:3000/#')
   .then((response) => {
-    console.log(response);
-    reponse.data.forEach(row => {
-      this.test = row['monthlyRepairCount']
-    });
-  })
+      this.data = response[0]
+    })
   .catch((error) => {
-    console.log(error);
+    console.log(error)
   })
- }
-};
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped src="../assets/css/styles.css">
 
 
-/* @import '../assets/css/styles.css'; */
+@import '../assets/css/styles.css';
 </style>

@@ -1,6 +1,7 @@
 // Import the Google Cloud client library
 const {BigQuery} = require('@google-cloud/bigquery');
 const express = require('express')
+const cors = require('cors');
 const app = express()
 
 // takes in supplier name and YYYY.MM strings and returns the json response
@@ -48,12 +49,14 @@ async function queryMonthlySupplierData(supplier_name, yearmonth) {
 //   });
 }
 
-let config = queryMonthlySupplierData("Shop 1", "2021.04")
 
-app.get('/', function(req, res) {
-  console.log(config);
-  res.send(config);
-})
+app.use(cors());
+
+app.get('/', async (req, res) => {
+  res.json((await queryMonthlySupplierData("Shop 1", "2021.04")));
+
+
+});
 
 app.listen(3000, function() {
   console.log("example app listening on port 3000")

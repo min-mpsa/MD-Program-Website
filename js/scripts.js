@@ -1,5 +1,5 @@
 let data = {
-    is_qualify: false,
+    is_qualify: true,
     latestMonth: "April 2022",
     numOfRepairs: "3",
     numOfReplacements: "14",

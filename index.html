@@ -8,7 +8,9 @@
   <link rel="icon" type="image/x-icon" href="favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
-<body onload="moveCar()"  class="animate__animated animate__fadeIn animate__delay-1s">
+<body onload="moveCar()"  class="animate__animated animate__fadeIn animate__delay-1s" class="shooting-stars">
+
+  <div class="shooting-stars"></div>
 
   <nav class="hidden-nav">
     <div class="nav-buttons">
@@ -16,6 +18,7 @@
     </div>
   </nav>
 
+<div class="content">
   <section class="section fade" id="section-1">
     <div class="top">
       <div class="top-text">In <span id="latest-month" class="latest_month"></span>, you had:</div>
@@ -23,17 +26,20 @@
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
         <div class="top2"></div>
-        <div class="middle" id="num-of-repairs"></div>
+        <div class="middle" id="num-of-repairs" style="text-shadow: 0 0 1px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+        "></div>
         <div class="bottom-text">Repairs</div>
       </div>
       <div class="bottom-div" id="bottom-div-2">
         <div class="top2"></div>
-        <div class="middle" id="num-of-replacements"></div>
+        <div class="middle" id="num-of-replacements" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+        "></div>
         <div class="bottom-text">Replacements</div>
       </div>
       <div class="bottom-div" id="bottom-div-3">
         <div class="top2"></div>
-        <div class="middle" id="latest-month-repair-ratio"></div>
+        <div class="middle" id="latest-month-repair-ratio" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+        "></div>
         <div class="bottom-text">of windshields repaired</div>
       </div>
     </div>
@@ -43,7 +49,8 @@
     <div class="left">
         <div class="left-div-top">In all of 2022, you've had:</div>
         <div class="left-div-middle">
-            <div class="left-div-middle-left" id="ytd-repair-ratio"></div>
+            <div class="left-div-middle-left" id="ytd-repair-ratio" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+            "></div>
             <div class="left-div-middle-right">of windshields repaired</div>
         </div>
         <div class="left-div-bottom" class="is-qualify-false"><span class="is-qualify-false">Hit 35% repairs to get rebates!</span></div>
@@ -161,27 +168,31 @@
       <div class="bottom">
         <div class="bottom-div" id="bottom-div-1">
           <div class="top2"></div>
-          <div class="middle" id="repair-earnings-latest-month"></div>
+          <div class="middle" id="repair-earnings-latest-month" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+          "></div>
           <div class="bottom-text">from repairs</div>
         </div>
         <div class="bottom-div" id="bottom-div-2">
           <div class="top2"></div>
-          <div class="middle" id="glass-labor-earnings-latest-month"></div>
+          <div class="middle" id="glass-labor-earnings-latest-month" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+          "></div>
           <div class="bottom-text">from glass labor</div>
         </div>
         <div class="bottom-div" id="bottom-div-3">
           <div class="top2"></div>
-          <div class="middle" id="rebate-earnings-latest-month"></div>
+          <div class="middle" id="rebate-earnings-latest-month" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+          "></div>
           <div class="bottom-text">from rebates</div>
         </div>
         <div class="bottom-div" id="bottom-div-4">
             <div class="top2"></div>
-            <div class="middle" id="total-earnings-latest-month"></div>
+            <div class="middle" id="total-earnings-latest-month" style="text-shadow: 0 0 2px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.3);
+            "></div>
             <div class="bottom-text">in total</div>
           </div>
       </div>
   </section>
-
+</div>
   <script src="js/scripts.js"></script>
 </body>
 </html>

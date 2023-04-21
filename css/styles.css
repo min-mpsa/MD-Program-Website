@@ -235,7 +235,8 @@ body {
     height: 100%;
     background-image: url("../car.png");
     background-size: cover;
-    transform: translateX(0vw) ease-in-out;
+    transition: transform 0.5s ease-out;
+    transform: translateX(0vw);
 }
 
 #section-2 .bucket {

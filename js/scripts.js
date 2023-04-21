@@ -22,8 +22,8 @@ let monthArray = [];
 let shopName;
 let firstCarPosition = 0;
 
-
 function moveCar() {
+  var ratio = data.ytdRepairRatio;
   var Repairs = Number(document.getElementById('repairPred').value);
   var Replacements = Number(document.getElementById('replacementPred').value);
   var initialPositionOfCar = firstCarPosition;
@@ -36,6 +36,8 @@ function moveCar() {
     document.getElementById('car').style.transform = 'translateX(' + (moveDistance) + 'vw)';
   }
   firstCarPosition = finalPositionOfCar;
+  ratio = firstCarPosition * 35;
+  document.getElementById("ytd-repair-ratio").textContent = parseInt(ratio,10) + "%";
   console.log(document.getElementById('car').style.transform);
 }
 
@@ -49,7 +51,6 @@ document.getElementById("glass-labor-earnings-latest-month").textContent = "$" +
 document.getElementById("rebate-earnings-latest-month").textContent = "$" + data.rebateEarningsLatestMonth;
 document.getElementById("total-earnings-latest-month").textContent = "$" + data.totalEarningsLatestMonth;
 document.getElementById("latest-month2").textContent = data.latestMonth;
-document.getElementById("ytd-repair-ratio").textContent = data.ytdRepairRatio + "%";
 document.getElementById("cumulative-rebate-earnings").textContent = "$" + data.cumulativeRebateEarnings;
 
 

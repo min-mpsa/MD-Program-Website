@@ -219,6 +219,7 @@ body {
     letter-spacing: 3px;
 }
 
+
 #section-2 .left-div-middle {
     height: 50%;
     display: flex;
@@ -593,4 +594,29 @@ input {
   padding: 0 0.5em;
   letter-spacing: 2px;
   
+}
+
+
+@keyframes glimmer {
+  0% {
+    background-position: -100% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+.glimmer {
+  color: #FFD700;
+  background: linear-gradient(
+    to right,
+    #ffd700 25%,
+    rgba(255, 255, 255, 1) 50%,
+    #ffd700 75%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glimmer 2s infinite linear;
 }

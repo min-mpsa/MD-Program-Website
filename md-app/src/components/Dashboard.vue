@@ -17,22 +17,23 @@
 
   <section class="section" id="section-1">
     <div class="top">
-      <div class="top-text">In {{monthlyRepairs}}, you had:</div>
+      <!-- to do make this month a global variable -->
+      <div class="top-text">In {{  }}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
         <div class="top2"></div>
-        <div class="middle" id="num-of-repairs">{{ test }}</div>
+        <div class="middle" id="num-of-repairs">{{ monthlydata.monthlyRepairCount}}</div>
         <div class="bottom-text">Repairs</div>
       </div>
       <div class="bottom-div" id="bottom-div-2">
         <div class="top2"></div>
-        <div class="middle" id="num-of-replacements">{{numOfReplacements}}</div>
+        <div class="middle" id="num-of-replacements">{{ monthlydata.monthlyReplacementCount }}</div>
         <div class="bottom-text">Replacements</div>
       </div>
       <div class="bottom-div" id="bottom-div-3">
         <div class="top2"></div>
-        <div class="middle" id="latest-month-repair-ratio">{{latestMonthRepairRatio}}</div>
+        <div class="middle" id="latest-month-repair-ratio"> {{monthlydata.monthlyRepairRatio}} </div>
         <div class="bottom-text">of windshields repaired</div>
       </div>
     </div>
@@ -42,12 +43,12 @@
     <div class="left">
         <div class="left-div-top">This year you repaired</div>
         <div class="left-div-middle">
-            <div class="left-div-middle-left" id="ytd-repair-ratio">{{ytdRepairRatio}}</div>
+            <div class="left-div-middle-left" id="ytd-repair-ratio">{{repairPercentage}}</div>
             <div class="left-div-middle-right">of windshields:</div>
         </div>
         
         <div class="left-div-bottom" v-if="'ytdRepairRatio' >= 35.0">Maintain 35% repairs to get rebates!</div>
-        <div class="left-div-bottom" v-else>Achieve 35% windshield repair ratio by {{endDate}} to unlock rebates!</div>
+        <div class="left-div-bottom" v-else>Achieve 35% windshield repair ratio by June 1 2023 to unlock rebates!</div>
     </div>
     <div class="right is-qualify-false">
         <div class="right-div-top"></div>
@@ -67,7 +68,7 @@
     </div>
     <div>
         <div class="right-true-top">Get ready for:</div>
-        <div class="right-true-middle" id="cumulative-rebate-earnings">${{cumulativeRebateEarnings}}</div>
+        <div class="right-true-middle" id="cumulative-rebate-earnings">${{monthlydata.ytdRebates}}</div>
         <div class="right-true-bottom">in year-end rebates if you keep this up!</div>
     </div>
   </section>
@@ -107,22 +108,22 @@
       <div class="bottom">
         <div class="bottom-div" id="bottom-div-1">
           <div class="top2"></div>
-          <div class="middle" id="repair-earnings-latest-month"></div>
+          <div class="middle" id="repair-earnings-latest-month">{{ monthlydata.repairEarnings }}</div>
           <div class="bottom-text">from repairs</div>
         </div>
         <div class="bottom-div" id="bottom-div-2">
           <div class="top2"></div>
-          <div class="middle" id="glass-labor-earnings-latest-month"></div>
+          <div class="middle" id="glass-labor-earnings-latest-month"> {{ monthlydata.replacementEarnings }}</div>
           <div class="bottom-text">from glass labor</div>
         </div>
         <div class="bottom-div" id="bottom-div-3">
           <div class="top2"></div>
-          <div class="middle" id="rebate-earnings-latest-month"></div>
+          <div class="middle" id="rebate-earnings-latest-month"> {{ monthlydata.monthlyTotalRebates }}</div>
           <div class="bottom-text">from rebates</div>
         </div>
         <div class="bottom-div" id="bottom-div-4">
             <div class="top2"></div>
-            <div class="middle" id="total-earnings-latest-month"></div>
+            <div class="middle" id="total-earnings-latest-month"> {{ monthlyTotalEarnings}}</div>
             <div class="bottom-text">in total</div>
           </div>
       </div>
@@ -151,13 +152,15 @@ export default {
     return {
         LineChart,
         monthlydata: {},
-        yearlydata: {}
+        yearlydata: {},
+        monthlyTotalEarnings: 0,
+        repairPercentage: 0
       };
   },
   methods: {
     async queryDailySupplierData(supplier_name) {
       const bigqueryClient = new BigQuery();
-
+//todo update this to dailyDataQueryTable1
       const sqlQuery = `SELECT *
       FROM acquired-router-384100.glassRepairs.dailyDataQueryTable
       WHERE Supplier_Name="${supplier_name}"`
@@ -178,7 +181,7 @@ export default {
       // The SQL query to run
       const sqlQuery = 
       `SELECT *
-      FROM acquired-router-384100.glassRepairs.monthlyDataQueryResults1
+      FROM acquired-router-384100.glassRepairs.monthlyDataQueryResults2
       WHERE Supplier_Name="${supplier_name}" AND yearmonth="${yearmonth}"`;
 
       const options = {
@@ -189,7 +192,6 @@ export default {
 
       // Run the query
       const [rows] = await bigqueryClient.query(options);
-      console.log(rows);
       return rows;
     //   console.log('Query Results:');
     //   rows.forEach(row => {
@@ -203,18 +205,21 @@ export default {
   const BODYSHOP = "Shop 1"
   const MONTH = "2021.01"
   const params = { 
-    supplier_name: `${BODYSHOP}`,
-    yearmonth: `${MONTH}`
+    supplier_name: "Shop 1",
+    yearmonth: "2021.04"
   }
   axios.get('http://localhost:3000/monthly', { params })
   .then((response) => {
     console.log(response.data[0]);
     this.monthlydata = response.data[0];
+    this.repairPercentage = 100 * Number(response.data[0].ytdRepairRatio)
+    console.log(this.repairPercentage)
+    this.monthlyTotalEarnings =  response.data[0].totalEarningsWithoutRebate + response.data[0].monthlyTotalRebates;
     })
   .catch((error) => {
     console.log(error);
   })
-  axios.get('http://localhost:3000/daily', { BODYSHOP })
+  axios.get('http://localhost:3000/daily', { params: { supplier_name: `${BODYSHOP}`} })
   .then((response) => {
     console.log(response.data[0]);
     this.daily = response.data[0];

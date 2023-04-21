@@ -5,6 +5,7 @@ const cors = require('cors');
 const app = express()
 app.use(cors());
 
+
 // takes in supplier name and YYYY.MM strings and returns the json response
 async function queryDailySupplierData(supplier_name) {
     const bigqueryClient = new BigQuery();
@@ -17,7 +18,6 @@ async function queryDailySupplierData(supplier_name) {
         query: sqlQuery,
         location: 'us-west1',
     };
-
     const [rows] = await bigqueryClient.query(options);
     return rows;
 }
@@ -29,7 +29,7 @@ async function queryMonthlySupplierData(supplier_name, yearmonth) {
   // The SQL query to run
   const sqlQuery = 
   `SELECT *
-   FROM acquired-router-384100.glassRepairs.monthlyDataQueryResults1
+   FROM acquired-router-384100.glassRepairs.monthlyDataQueryTable
    WHERE Supplier_Name="${supplier_name}" AND yearmonth="${yearmonth}"`;
 
   const options = {

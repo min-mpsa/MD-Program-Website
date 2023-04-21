@@ -17,12 +17,12 @@
 
   <section class="section" id="section-1">
     <div class="top">
-      <div class="top-text">In {{latestMonth}}, you had:</div>
+      <div class="top-text">In {{test}}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
         <div class="top2"></div>
-        <div class="middle" id="num-of-repairs">{{numOfRepairs}}</div>
+        <div class="middle" id="num-of-repairs">{{ test }}</div>
         <div class="bottom-text">Repairs</div>
       </div>
       <div class="bottom-div" id="bottom-div-2">
@@ -140,7 +140,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LineChart from '@/components/LineChart.vue';
+import { onMounted } from 'vue';
 
 export default {
   name: "Dashboard",
@@ -148,28 +150,66 @@ export default {
   data() {
     return {
         LineChart,
-        is_qualify: false,
-        latestMonth: "April 2022",
-        numOfRepairs: "3",
-        numOfReplacements: "14",
-        latestMonthRepairRatio: "18%",
-        ytdRepairRatio: "20%",
-        nextMonthRepairs: 0,
-        nextMonthReplacements: 0,
-        totalClaimsYTD: 109, 
-        yearEndRebateAmt: 0,
-        repairEarningsLatestMonth: "3000",
-        glassLaborEarningsLatestMonth: "3000",
-        rebateEarningsLatestMonth: "0",
-        totalEarningsLatestMonth: "6000",
-        cumulativeRebateEarnings: "100",
-        glassLaborEarnings:[0,1,2,3,4,5,6,7,8,9,10,11,12],
-        potentialTotalEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
-        potentialRebateEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
-        predictedRepairRatio: [0,1,2,3,4,5,6,7,8,9,10,11,12],
-        endDate: "Dec. 29th, 2023",
+        test: ""
       };
-  }
+  },
+  methods: {
+    async queryDailySupplierData(supplier_name) {
+      const bigqueryClient = new BigQuery();
+
+      const sqlQuery = `SELECT *
+      FROM acquired-router-384100.glassRepairs.dailyDataQueryTable
+      WHERE Supplier_Name="${supplier_name}"`
+      
+      const options = {
+          query: sqlQuery,
+          location: 'us-west1',
+      };
+
+      const [rows] = await bigqueryClient.query(options);
+      console.log(rows);
+      return rows;
+    },
+    async queryMonthlySupplierData(supplier_name, yearmonth) {
+      // Create a client
+      const bigqueryClient = new BigQuery();
+
+      // The SQL query to run
+      const sqlQuery = 
+      `SELECT *
+      FROM acquired-router-384100.glassRepairs.monthlyDataQueryResults1
+      WHERE Supplier_Name="${supplier_name}" AND yearmonth="${yearmonth}"`;
+
+      const options = {
+        query: sqlQuery,
+        // Location must match that of the dataset(s) referenced in the query.
+        location: 'us-west1',
+      };
+
+      // Run the query
+      const [rows] = await bigqueryClient.query(options);
+      console.log(rows);
+      return rows;
+    //   console.log('Query Results:');
+    //   rows.forEach(row => {
+    //     const supplier_name = row['Supplier_Name'];
+    //     const total_earnings = row['total_earnings'];
+    //     console.log(`Body ${supplier_name}: ${total_earnings}`);
+    //   });
+    }
+ },
+ mounted() {
+  axios.get('http://localhost:3000/')
+  .then((response) => {
+    console.log(response);
+    reponse.data.forEach(row => {
+      this.test = row['monthlyRepairCount']
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+ }
 };
 </script>
 

@@ -4,5 +4,12 @@ module.exports = defineConfig({
 });
 
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    resolve: {
+      fallback: {
+        "querystring": require.resolve("querystring-es3")
+      }
+    }
+  }
 }

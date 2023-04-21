@@ -1,5 +1,7 @@
 // Import the Google Cloud client library
 const {BigQuery} = require('@google-cloud/bigquery');
+const express = require('express')
+const app = express()
 
 // takes in supplier name and YYYY.MM strings and returns the json response
 async function queryDailySupplierData(supplier_name) {
@@ -15,7 +17,6 @@ async function queryDailySupplierData(supplier_name) {
     };
 
     const [rows] = await bigqueryClient.query(options);
-    console.log(rows);
     return rows;
 }
 
@@ -46,3 +47,14 @@ async function queryMonthlySupplierData(supplier_name, yearmonth) {
 //     console.log(`Body ${supplier_name}: ${total_earnings}`);
 //   });
 }
+
+let config = queryMonthlySupplierData("Shop 1", "2021.04")
+
+app.get('/', function(req, res) {
+  console.log(config);
+  res.send(config);
+})
+
+app.listen(3000, function() {
+  console.log("example app listening on port 3000")
+})

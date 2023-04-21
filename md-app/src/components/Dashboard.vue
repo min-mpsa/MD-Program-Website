@@ -201,7 +201,11 @@ export default {
  mounted() {
   axios.get('http://localhost:3000/#')
   .then((response) => {
-      this.data = response[0]
+    console.log(response);
+
+    console.log(response.data[0]);
+
+    this.data = response.data[0];
     })
   .catch((error) => {
     console.log(error)

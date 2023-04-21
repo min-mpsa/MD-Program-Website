@@ -3,6 +3,7 @@ const {BigQuery} = require('@google-cloud/bigquery');
 const express = require('express')
 const cors = require('cors');
 const app = express()
+app.use(cors());
 
 // takes in supplier name and YYYY.MM strings and returns the json response
 async function queryDailySupplierData(supplier_name) {
@@ -50,12 +51,9 @@ async function queryMonthlySupplierData(supplier_name, yearmonth) {
 }
 
 
-app.use(cors());
 
 app.get('/', async (req, res) => {
   res.json((await queryMonthlySupplierData("Shop 1", "2021.04")));
-
-
 });
 
 app.listen(3000, function() {

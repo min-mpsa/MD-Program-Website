@@ -143,8 +143,6 @@
 <script>
 import axios from 'axios';
 import LineChart from '@/components/LineChart.vue';
-import { onMounted } from 'vue';
-import { SubscriptionLog } from 'rxjs/internal/testing/SubscriptionLog';
 
 export default {
   name: "Dashboard",

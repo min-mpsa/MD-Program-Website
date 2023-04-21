@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<template>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
-  <link rel="stylesheet" href="css/login.css">
 </head>
   <body>
     <div class="container">
@@ -17,6 +17,9 @@
           <button type="submit" id="submitbutton">Login</button>
         </form>
     </div>
-    <script src="js/scripts.js"></script>
   </body>
 </html>
+
+</template>
+
+<style scoped src="../assets/css/login.css"></style>

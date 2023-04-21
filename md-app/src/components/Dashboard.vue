@@ -27,12 +27,12 @@
       </div>
       <div class="bottom-div" id="bottom-div-2">
         <div class="top2"></div>
-        <div class="middle" id="num-of-replacements"></div>
+        <div class="middle" id="num-of-replacements">{{numOfReplacements}}</div>
         <div class="bottom-text">Replacements</div>
       </div>
       <div class="bottom-div" id="bottom-div-3">
         <div class="top2"></div>
-        <div class="middle" id="latest-month-repair-ratio"></div>
+        <div class="middle" id="latest-month-repair-ratio">{{latestMonthRepairRatio}}</div>
         <div class="bottom-text">of windshields repaired</div>
       </div>
     </div>
@@ -40,12 +40,14 @@
 
   <section class="section" id="section-2">
     <div class="left">
-        <div class="left-div-top">In all of 2022, you've had:</div>
+        <div class="left-div-top">This year you repaired</div>
         <div class="left-div-middle">
-            <div class="left-div-middle-left" id="ytd-repair-ratio"></div>
-            <div class="left-div-middle-right">of windshields repaired</div>
+            <div class="left-div-middle-left" id="ytd-repair-ratio">{{ytdRepairRatio}}</div>
+            <div class="left-div-middle-right">of windshields:</div>
         </div>
-        <div class="left-div-bottom"><span class="is-qualify-false">Hit 35% repairs to get rebates!</span></div>
+        
+        <div class="left-div-bottom" v-if="'ytdRepairRatio' >= 35.0">Maintain 35% repairs to get rebates!</div>
+        <div class="left-div-bottom" v-else>Achieve 35% windshield repair ratio by {{endDate}} to unlock rebates!</div>
     </div>
     <div class="right is-qualify-false">
         <div class="right-div-top"></div>
@@ -63,14 +65,14 @@
             </div>
         </div>
     </div>
-    <div class="right is-qualify-true">
+    <div>
         <div class="right-true-top">Get ready for:</div>
-        <div class="right-true-middle" id="cumulative-rebate-earnings"></div>
+        <div class="right-true-middle" id="cumulative-rebate-earnings">${{cumulativeRebateEarnings}}</div>
         <div class="right-true-bottom">in year-end rebates if you keep this up!</div>
     </div>
   </section>
 
-  <section class="section is-qualify-false" id="section-3">
+  <section v-if="'ytdRepairRatio' < 35.0">
     <div class="top">
         <div class="top-text">What you're missing out on:</div>
     </div>
@@ -84,65 +86,17 @@
 
   <section class="section is-qualify-true" style="height:175vh;margin-bottom:20vh;" id="section-3">
     <div class="top">
-        <div class="top-text">Predict your earnings:</div>
-    </div>
-    <div class="middle">
-        <div><label class="repair-label">% of windshields repaired</label></div>
-        <div class="input-row">
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[0]">
-          <label class="month-label">Jan</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[1]">
-          <label class="month-label">Feb</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[2]">
-          <label class="month-label">Mar</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[3]">
-          <label class="month-label">Apr</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[4]">
-          <label class="month-label">May</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[5]">
-          <label class="month-label">Jun</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[6]">
-          <label class="month-label">Jul</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[7]">
-          <label class="month-label">Aug</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[8]">
-          <label class="month-label">Sep</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[9]">
-          <label class="month-label">Oct</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[10]">
-          <label class="month-label">Nov</label>
-        </div>
-        <div class="input-container">
-          <input type="number" class="input-field" value="predictedRepairRatio[11]">
-          <label class="month-label">Dec</label>
-        </div></div>
     </div>
     <div class="bottom">
-      <div class="bottom-div" id="bottom-div-4"></div>
-      <div class="bottom-div" id="bottom-div-5"></div>
-      <div class="bottom-div" id="bottom-div-6"></div>
-      <div class="bottom-div" id="bottom-div-7"></div>
+      <div class="bottom-div" id="bottom-div-4">
+          <LineChart />
+      </div>
+      <div class="bottom-div" id="bottom-div-5">
+      </div>
+      <div class="bottom-div" id="bottom-div-6">
+      </div>
+      <div class="bottom-div" id="bottom-div-7">
+      </div>
     </div>
   </section>
 
@@ -186,10 +140,14 @@
 </template>
 
 <script>
+import LineChart from '@/components/LineChart.vue';
+
 export default {
   name: "Dashboard",
+  components: { LineChart },
   data() {
     return {
+        LineChart,
         is_qualify: false,
         latestMonth: "April 2022",
         numOfRepairs: "3",
@@ -208,7 +166,8 @@ export default {
         glassLaborEarnings:[0,1,2,3,4,5,6,7,8,9,10,11,12],
         potentialTotalEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
         potentialRebateEarnings: [0,1,2,3,4,5,6,7,8,9,10,11,12],
-        predictedRepairRatio: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+        predictedRepairRatio: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+        endDate: "Dec. 29th, 2023",
       };
   }
 };

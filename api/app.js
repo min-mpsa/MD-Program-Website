@@ -50,10 +50,15 @@ async function queryMonthlySupplierData(supplier_name, yearmonth) {
 //   });
 }
 
+app.get('/monthly', async (req, res) => {
+  const supplier_name = req.query.supplier_name;
+  const yearmonth = req.query.yearmonth;
+  res.json((await queryMonthlySupplierData(supplier_name, yearmonth)));
+});
 
-
-app.get('/', async (req, res) => {
-  res.json((await queryMonthlySupplierData("Shop 1", "2021.04")));
+app.get('/daily', async (req, res) => {
+  const supplier_name = req.query.supplier_name;
+  res.json((await queryDailySupplierData(supplier_name)));
 });
 
 app.listen(3000, function() {

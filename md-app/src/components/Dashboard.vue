@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <link href="styles.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
   <section class="section" id="section-1">
     <div class="top">
-      <div class="top-text">In {{data.ytdRepairRatio}}, you had:</div>
+      <div class="top-text">In {{monthlyRepairs}}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
@@ -150,7 +150,8 @@ export default {
   data() {
     return {
         LineChart,
-        data: {}
+        monthlydata: {},
+        yearlydata: {}
       };
   },
   methods: {
@@ -199,16 +200,27 @@ export default {
     }
  },
  mounted() {
-  axios.get('http://localhost:3000/#')
+  const BODYSHOP = "Shop 1"
+  const MONTH = "2021.01"
+  const params = { 
+    supplier_name: `${BODYSHOP}`,
+    yearmonth: `${MONTH}`
+  }
+  axios.get('http://localhost:3000/monthly', { params })
   .then((response) => {
-    console.log(response);
-
     console.log(response.data[0]);
-
-    this.data = response.data[0];
+    this.monthlydata = response.data[0];
     })
   .catch((error) => {
-    console.log(error)
+    console.log(error);
+  })
+  axios.get('http://localhost:3000/daily', { BODYSHOP })
+  .then((response) => {
+    console.log(response.data[0]);
+    this.daily = response.data[0];
+  })
+  .catch((error) => {
+    console.log(error);
   })
   }
 }

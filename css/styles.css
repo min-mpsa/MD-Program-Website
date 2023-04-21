@@ -20,7 +20,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: linear-gradient(135deg, #272727, #1d1d1d);
+    background: linear-gradient(135deg, #07345cf0, #101010);
     z-index: -1;
   }
   
@@ -423,7 +423,7 @@ input {
   justify-content: center;
   font-size: 6em;
   font-weight: 600;
-  animation-name: floating;
+  animation-name: floating1;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
@@ -440,9 +440,9 @@ input {
   font-weight: 500;
 }
 
-@keyframes floating {
+@keyframes floating1 {
   0% { transform: translate(0,  0px); }
-  50%  { transform: translate(0, 40px); }
+  50%  { transform: translate(0, 80px); }
   100%   { transform: translate(0, -0px); }   
 }
 
@@ -578,7 +578,7 @@ input {
   justify-content: center;
   font-size: 5em;
   font-weight: 600;
-  animation-name: floating;
+  animation-name: floating1;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;

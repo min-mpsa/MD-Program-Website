@@ -18,7 +18,7 @@
   <section class="section" id="section-1">
     <div class="top">
       <!-- to do make this month a global variable -->
-      <div class="top-text">In {{  }}, you had:</div>
+      <div class="top-text">In {{ yearmonth }}, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
@@ -103,7 +103,7 @@
 
   <section class="section" id="section-4">
     <div class="top">
-        <div class="top-text">In <span id="latest-month2"></span>, you earned:</div>
+        <div class="top-text">In <span id="latest-month2"></span>{{ yearmonth }}, you earned:</div>
       </div>
       <div class="bottom">
         <div class="bottom-div" id="bottom-div-1">
@@ -144,6 +144,7 @@
 import axios from 'axios';
 import LineChart from '@/components/LineChart.vue';
 import { onMounted } from 'vue';
+import { SubscriptionLog } from 'rxjs/internal/testing/SubscriptionLog';
 
 export default {
   name: "Dashboard",
@@ -154,7 +155,9 @@ export default {
         monthlydata: {},
         yearlydata: {},
         monthlyTotalEarnings: 0,
-        repairPercentage: 0
+        repairPercentage: 0,
+        yearmonth: "2021.06",
+        supplier_name: "Shop 1"
       };
   },
   methods: {
@@ -202,11 +205,10 @@ export default {
     }
  },
  mounted() {
-  const BODYSHOP = "Shop 1"
-  const MONTH = "2021.01"
+  const BODYSHOP = this.supplier_name
   const params = { 
-    supplier_name: "Shop 1",
-    yearmonth: "2021.04"
+    supplier_name: this.supplier_name,
+    yearmonth: this.yearmonth
   }
   axios.get('http://localhost:3000/monthly', { params })
   .then((response) => {

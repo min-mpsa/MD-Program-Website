@@ -1,10 +1,21 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    background-color: #0d1117;
+    margin-right: 20px;
+    background-color: #171717;
+    font-family: "Mona Sans", "Mona Sans Header Fallback", "system-ui", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #ffffff;
   }
-  
+
+  .animate__animated.animate__fadeIn {
+    --animate-duration: 2s;
+  }
+
+  #latest-month:hover{
+    cursor: pointer;
+    animation: pulse;
+  }
+
+
   .hidden-nav {
     position: fixed;
     top: 0;
@@ -30,23 +41,26 @@ body {
     cursor: pointer;
     padding: 10px;
     margin: 5px;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 1em;
     transition: border 0.3s;
-  }
-  
-  .nav-button:hover {
-    border: 2px solid white;
+    letter-spacing: 2px;
   }
   
   .section {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid white;
     padding-bottom: 6vh;
+  }
+
+  .fade {
+    opacity: 1;
   }
   
   #section-1 {
-    height: 80vh;
+    height: 65vh;
     display: flex;
     flex-direction: column;
   }
@@ -70,7 +84,6 @@ body {
   #section-5 {
     height: 10vh;
     width: 76vw;
-    border: 1px solid white;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -81,7 +94,6 @@ body {
     font-size: 2em;
     width: 38vw;
     height: 10vh;
-    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +102,6 @@ body {
   .section-5-right {
     width: 38vw;
     height: 10vh;
-    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,7 +137,6 @@ body {
 #section-2 .left {
     width: 50vw;
     height: 100%;
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
 }
@@ -134,14 +144,12 @@ body {
 #section-2 .right {
     width: 50vw;
     height: 100%;
-    border: 1px solid white;
 }
 
 #section-2 .left-div-top {
     height: 20%;
     width: 80%;
     margin-right: 20%;
-    border: 1px solid white;
     font-size: 2.5em;
     display: flex;
     justify-content: center;
@@ -150,7 +158,6 @@ body {
 
 #section-2 .left-div-middle {
     height: 50%;
-    border: 1px solid white;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -159,7 +166,6 @@ body {
 #section-2 .left-div-middle-left {
     width: 60%;
     height: 100%;
-    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,18 +176,16 @@ body {
 #section-2 .left-div-middle-right {
     width: 40%;
     height: 100%;
-    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: left;
-    padding-left: 5%;
-    font-size: 2em;
+    padding-left: 3%;
+    font-size: 2.2em;
 }
 
 #section-2 .left-div-bottom {
     height: 30%;
-    border: 1px solid white;
     font-size: 2.5em;
     display: flex;
     justify-content: center;
@@ -190,16 +194,33 @@ body {
 
 #section-2 .right-div-top {
     height: 50%;
-    border: 1px solid white;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    padding: 2em;
+}
+
+#section-2 .roadcontainer {
+    width: 80%;
+    height: 20%;
+    margin-top: 30%;
+}
+
+#section-2 #car {
+    border: 0.5px solid grey;
+    width: 15%;
+    height: 100%;
+    transform: translateX(0vw);
+}
+
+#section-2 .bucket {
+  width: 20%;
+  height: 88%;
+  border: 0.5px solid grey;
 }
 
 #section-2 .right-true-top {
   height: 20%;
   width: 80%;
-  border: 1px solid white;
   font-size: 2.5em;
   display: flex;
   justify-content: left;
@@ -209,7 +230,6 @@ body {
 
 #section-2 .right-true-middle {
   height: 30%;
-  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -218,7 +238,6 @@ body {
 
 #section-2 .right-true-bottom {
   height: 20%;
-  border: 1px solid white;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -228,14 +247,12 @@ body {
 
 #section-2 .right-div-bottom {
     height: 50%;
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
 }
 
 #section-2 .right-div-bottom-top {
     height: 30%;
-    border: 1px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,7 +261,6 @@ body {
 
 #section-2 .right-div-bottom-bottom {
     height: 50%;
-    border: 1px solid white;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -253,11 +269,15 @@ body {
 .inputcontainer {
     width: 20%;
     height: 100%;
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
     font-size: 1.2em;
     text-align: center;
+}
+
+.inputcontainer input {
+  font-size: 2em;
+  text-align: center;
 }
 
 input {
@@ -273,13 +293,16 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
     margin-right: 60vw;
-    margin-top: 5%;
+    margin-top: 4%;
 }
 
 #section-1 .top-text {
     font-size: 2.5em;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 3px;
+    margin-left: 10%;
   }
 
 #section-1 .bottom {
@@ -296,7 +319,6 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid white;
 }
 
 #section-1 .top2 {
@@ -309,8 +331,12 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 5em;
-  border: 1px solid white;
+  font-size: 6em;
+  font-weight: 600;
+  animation-name: floating;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out
 }
 
 #section-1 .bottom-text {
@@ -321,8 +347,14 @@ input {
   font-size: 2em;
   text-align: center;
   padding: 0 0.5em;
+  font-weight: 500;
 }
 
+@keyframes floating {
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, 40px); }
+  100%   { transform: translate(0, -0px); }   
+}
 
 #section-3 .top {
     height: 8%;
@@ -330,7 +362,6 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
     margin-right: 60vw;
 }
 
@@ -344,7 +375,6 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid white;
     padding: 1em;
 }
 
@@ -416,7 +446,6 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid white;
     margin-right: 60vw;
 }
 
@@ -438,7 +467,6 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid white;
 }
 
 #section-4 .top2 {
@@ -452,7 +480,6 @@ input {
   align-items: center;
   justify-content: center;
   font-size: 5em;
-  border: 1px solid white;
 }
 
 #section-4 .bottom-text {

@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shop Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
-<body>
+<body onload="moveCar()"  class="animate__animated animate__fadeIn animate__delay-1s">
 
   <nav class="hidden-nav">
     <div class="nav-buttons">
@@ -14,9 +16,9 @@
     </div>
   </nav>
 
-  <section class="section" id="section-1">
+  <section class="section fade" id="section-1">
     <div class="top">
-      <div class="top-text">In <span id="latest-month"></span>, you had:</div>
+      <div class="top-text">In <span id="latest-month" class="latest_month"></span>, you had:</div>
     </div>
     <div class="bottom">
       <div class="bottom-div" id="bottom-div-1">
@@ -37,27 +39,33 @@
     </div>
   </section>
 
-  <section class="section" id="section-2">
+  <section class="section fade" id="section-2">
     <div class="left">
         <div class="left-div-top">In all of 2022, you've had:</div>
         <div class="left-div-middle">
             <div class="left-div-middle-left" id="ytd-repair-ratio"></div>
             <div class="left-div-middle-right">of windshields repaired</div>
         </div>
-        <div class="left-div-bottom"><span class="is-qualify-false">Hit 35% repairs to get rebates!</span></div>
+        <div class="left-div-bottom" class="is-qualify-false"><span class="is-qualify-false">Hit 35% repairs to get rebates!</span></div>
     </div>
     <div class="right is-qualify-false">
-        <div class="right-div-top"></div>
+        <div class="right-div-top">
+          <div class="roadcontainer">
+            <div id="car"></div>
+            <div id="key"></div>
+          </div>
+          <div class="bucket"></div>
+        </div>
         <div class="right-div-bottom">
             <div class="right-div-bottom-top">Find out how far you can drive forward next month:</div>
             <div class="right-div-bottom-bottom">
                 <div class="inputcontainer">
-                    <input type="text">
+                    <input type="number" id="repairPred"  onchange="moveCar()">
                     Repairs
                 </div>
                 <div class="inputcontainer">
-                    <input type="text">
-                    Replacements
+                  <input type="number" id="replacementPred"  onchange="moveCar()">
+                  Replacements
                 </div>
             </div>
         </div>
@@ -70,7 +78,7 @@
   </div>
   </section>
 
-  <section class="section is-qualify-false" id="section-3">
+  <section class="section fade is-qualify-false" id="section-3">
     <div class="top">
         <div class="top-text">What you're missing out on:</div>
     </div>
@@ -82,7 +90,7 @@
     </div>
   </section>
 
-  <section class="section is-qualify-true" style="height:175vh;margin-bottom:20vh;" id="section-3">
+  <section class="section fade is-qualify-true" style="height:175vh;margin-bottom:20vh;" id="section-3">
     <div class="top">
         <div class="top-text">Predict your earnings:</div>
     </div>
@@ -146,7 +154,7 @@
     </div>
   </section>
 
-  <section class="section" id="section-4">
+  <section class="section fade" id="section-4">
     <div class="top">
         <div class="top-text">In <span id="latest-month2"></span>, you earned:</div>
       </div>
@@ -172,13 +180,6 @@
             <div class="bottom-text">in total</div>
           </div>
       </div>
-  </section>
-
-  <section class="section" id="section-5">
-    <div class="section-5-left">See how you've done in the past:</div>
-    <div class="section-5-right">
-      <select class="month-dropdown" id="month-dropdown"></select>
-  </div>
   </section>
 
   <script src="js/scripts.js"></script>

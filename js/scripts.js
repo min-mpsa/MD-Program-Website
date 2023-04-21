@@ -4,9 +4,7 @@ let data = {
     numOfRepairs: "3",
     numOfReplacements: "14",
     latestMonthRepairRatio: "18%",
-    ytdRepairRatio: "20%",
-    nextMonthRepairs: 0,
-    nextMonthReplacements: 0,
+    ytdRepairRatio: 20,
     totalClaimsYTD: 109, 
     yearEndRebateAmt: 0,
     repairEarningsLatestMonth: "3000",
@@ -22,7 +20,24 @@ let data = {
 
 let monthArray = [];
 let shopName;
+let firstCarPosition = 0;
 
+
+function moveCar() {
+  var Repairs = Number(document.getElementById('repairPred').value);
+  var Replacements = Number(document.getElementById('replacementPred').value);
+  var initialPositionOfCar = firstCarPosition;
+  var finalPositionOfCar = ((((data.ytdRepairRatio/100)*data.totalClaimsYTD)+Repairs)/(data.totalClaimsYTD+Repairs+Replacements))/0.35;
+  var moveDistance = finalPositionOfCar * 30;
+  if (finalPositionOfCar >= 1) {
+    document.getElementById('car').style.transform = 'translateX(' + (30) + 'vw)';
+  }
+  else {
+    document.getElementById('car').style.transform = 'translateX(' + (moveDistance) + 'vw)';
+  }
+  firstCarPosition = finalPositionOfCar;
+  console.log(document.getElementById('car').style.transform);
+}
 
 
 document.getElementById("latest-month").textContent = data.latestMonth;
@@ -34,8 +49,10 @@ document.getElementById("glass-labor-earnings-latest-month").textContent = "$" +
 document.getElementById("rebate-earnings-latest-month").textContent = "$" + data.rebateEarningsLatestMonth;
 document.getElementById("total-earnings-latest-month").textContent = "$" + data.totalEarningsLatestMonth;
 document.getElementById("latest-month2").textContent = data.latestMonth;
-document.getElementById("ytd-repair-ratio").textContent = data.ytdRepairRatio;
+document.getElementById("ytd-repair-ratio").textContent = data.ytdRepairRatio + "%";
 document.getElementById("cumulative-rebate-earnings").textContent = "$" + data.cumulativeRebateEarnings;
+
+
 
 
 function displayContentBasedOnIsQualify() {
@@ -52,6 +69,25 @@ function displayContentBasedOnIsQualify() {
 }
 
 displayContentBasedOnIsQualify();
+
+$(window).on("load",function() {
+  $(window).scroll(function() {
+    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+    $(".fade").each(function() {
+      /* Check the location of each desired element */
+      var objectBottom = $(this).offset().top + $(this).outerHeight();
+      
+      /* If the element is completely within bounds of the window, fade it in */
+      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+        if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
+      } else { //object goes out of view (scrolling up)
+        if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
+      }
+    });
+  }).scroll(); //invoke scroll-handler on page-load
+});
+
+
 
 function populateDropdown(options) {
 
@@ -73,10 +109,8 @@ function populateDropdown(options) {
   }
 }
 
-populateDropdown(monthArray)
+populateDropdown(monthArray);
 
-
-/* Remove comment when backend is done
 
 document.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('#submitbutton');
@@ -108,4 +142,3 @@ async function handleButtonClick() {
   window.location.href = 'index.html';
 }
 
-*/

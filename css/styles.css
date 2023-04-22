@@ -276,6 +276,7 @@ body {
     justify-content: center;
     align-items: center;
     letter-spacing: 2px;
+    padding-left: 40px;
 }
 
 #section-2 .right-div-top {
@@ -302,7 +303,7 @@ body {
 
 #section-2 .bucket {
   width: 15%;
-  height: 36%;
+  height: 41%;
   margin-top: 23%;
   background-image: url("../money.png");
   background-size: contain;
@@ -535,13 +536,15 @@ input {
 }
 
   #section-3 .bottom {
-    height: 89%;
-    margin-top: 1%;
-    width: 100vw;
+    height: 76%;
+    margin-top: 5%;
+    width: 95vw;
+    margin-left: 20px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    background-image: url("../chart1.png");
+    background-size: contain;
   }
   
   #section-3 .bottom-div {
